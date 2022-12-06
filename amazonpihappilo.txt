@@ -1,0 +1,56 @@
+﻿Generate excel generates upto 3000 rows for all the keywords on a single category. So only one table per category is to be downloaded.
+
+
+
+
+How to select a subcategory:
+
+
+The subcategory is contained in section#aue-subcategory-option
+Inside it click div.a-icon-section-expand
+A popover will appear.
+First click clearAll a#clear-all-subcategories
+Options are contained in div#subcategories-checklist-container
+Each div inside is clickable and contains one option with an input element having a certain value div.subcategories-item
+An easy method is to just loop through them, selecting each
+After selecting click apply, input#modal-save-button-subcategories
+
+
+
+
+Selecting keyword performance:
+
+
+Inside the container div#keyword-perf-tab-set-container
+Contains a ul element
+Inside it are li elements which have to be clicked one by one
+
+
+Categories: 
+
+
+1. Almonds 
+2. Cashews
+3. Pistachios
+4. Walnuts
+5. Raisins
+6. Dates
+7. Mixed nuts
+8. Anjeer (Figs)
+9. Mixed dried fruits
+10. Cranberries
+
+
+Keyword Performance:
+
+
+1. Top category keywords
+2. Top branded keywords
+3. Top competitor keywords
+4. Top generic keywords
+5. Movers and Shakers
+
+
+
+
+For each category, download table for each keyword. Total tables: 50.
