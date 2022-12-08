@@ -1,7 +1,7 @@
 const delay = require('./delay');
 const { subCategoryInputs } = require("./domVariables");
 
-const downloadSheets = async (browser) => {
+const downloadSheets = async (browser, downloadFolder) => {
   const page = await browser.newPage();
   await page.setViewport({ width: 1900, height: 900 });
 
@@ -9,7 +9,7 @@ const downloadSheets = async (browser) => {
   const client = await page.target().createCDPSession()
   await client.send('Page.setDownloadBehavior', {
     behavior: 'allow',
-    downloadPath: '/home/redstar/piScrape/downloads',
+    downloadPath: `/home/redstar/piScrape/downloads/${downloadFolder}`,
   })
   
   await page.goto("https://pi.amazon.in/#/download-center", { waitUntil: "networkidle0" });
@@ -19,7 +19,7 @@ const downloadSheets = async (browser) => {
 
   for(let i = 0; i < subCategoryInputs.length; i++) {
     await downloads[i].click();
-    await delay(1000);
+    await delay(1500);
   }
 
   return;

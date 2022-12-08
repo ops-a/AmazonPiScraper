@@ -20,7 +20,6 @@ const clickToApplySub = "input#modal-save-button-subcategories";
 
 // CSV dropdown
 const selectCSV = "#download-dropdown";
-const csvOption = "option-2";
 
 // Generate excel button
 const generateExcelBtn = '#aue-report-download a[role="button"]';
@@ -32,7 +31,6 @@ module.exports = {
   clickToApplySub,
   clickToClearAllSubs,
   selectCSV,
-  csvOption,
   generateExcelBtn,
   keywordBtns
 };

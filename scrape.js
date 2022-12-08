@@ -7,14 +7,13 @@ const {
   clickToApplySub,
   clickToClearAllSubs,
   selectCSV,
-  csvOption,
   generateExcelBtn,
   keywordBtns
 } = require("./domVariables");
 
 
 
-const generateReports = async (browser) => {
+const generateReports = async (browser, csvOption) => {
   const page = await browser.newPage();
   await page.setViewport({ width: 1900, height: 900 });
 
@@ -44,14 +43,15 @@ const generateReports = async (browser) => {
     const apply = await page.waitForSelector(clickToApplySub);
     await apply.click();
 
-    await delay(1000);
+    await delay(2000);
 
     await page.click(generateExcelBtn);
    
-    await delay(1000);
+    await delay(2000);
   }
 };
 
+module.exports = generateReports;
 
 // Loop through all the subcategories and print them
 // Loop through all the keywords and print them
