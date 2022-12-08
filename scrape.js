@@ -1,4 +1,5 @@
-const puppeteer = require("puppeteer");
+const delay = require('./delay');
+
 const {
   subChecklistContainer,
   subCategoryInputs,
@@ -11,14 +12,9 @@ const {
   keywordBtns
 } = require("./domVariables");
 
-const wsEndpointUrl =
-  "ws://127.0.0.1:5501/devtools/browser/3c582466-27d3-48ad-b1d7-af8016c2313b";
 
-const generateReports = async () => {
-  const browser = await puppeteer.connect({
-    browserWSEndpoint: wsEndpointUrl,
-    args: ["-start-fullscreen"],
-  });
+
+const generateReports = async (browser) => {
   const page = await browser.newPage();
   await page.setViewport({ width: 1900, height: 900 });
 
@@ -48,61 +44,15 @@ const generateReports = async () => {
     const apply = await page.waitForSelector(clickToApplySub);
     await apply.click();
 
+    await delay(1000);
+
+    await page.click(generateExcelBtn);
    
-    // Now generate the report
-    if(i == 0) {
-      break;
-    }
+    await delay(1000);
   }
 };
 
-// const downloadPage = await browser.newPage();
-// await downloadPage.setViewport({ width: 1900, height: 900 });
-// await downloadPage.goto("https://pi.amazon.in/#/download-center", {
-//   waitUntil: "networkidle0",
-// });
-// await downloadPage.click(`table.aue-custom-table tr button`);
 
-// await browser.close();
-
-const loopAndPrint = async () => {
-  const browser = await puppeteer.connect({
-    browserWSEndpoint: wsEndpointUrl,
-    args: ["-start-fullscreen"],
-  });
-  const page = await browser.newPage();
-  await page.setViewport({ width: 1900, height: 900 });
-  await page.goto("https://pi.amazon.in/#/", { waitUntil: "networkidle0" });
-  await page.click(clickForPopOver);
-
-  // clear all subcategories
-  await page.waitForSelector(clearAllSubs);
-  await page.click(clearAllSubs);
-  const optionsContainer = await page.$(
-    "div#subcategories-checklist-container"
-  );
-  console.log("Options Container: ", optionsContainer);
-  // const options = await optionsContainer.$$('input');
-
-  // Method 1
-  // const input = await page.waitForSelector('div.subcategories-item input[value="10227"]');
-  // await input.click();
-
-  // Method 2
-  // await page.$eval('input[value="10227"]', e => e.click());
-  // await page.$eval('input[value="11843"]', e => e.click());
-
-  await page.focus(`${subcategoryDiv} ${almond}`);
-
-  await page.keyboard.press("Space", { delay: 1000 });
-
-  const apply = await page.waitForSelector(
-    "input#modal-save-button-subcategories"
-  );
-  await apply.click();
-};
-
-generateReports();
 // Loop through all the subcategories and print them
 // Loop through all the keywords and print them
 
