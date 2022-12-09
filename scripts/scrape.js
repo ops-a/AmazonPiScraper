@@ -24,7 +24,7 @@ const generateReports = async (browser, csvOption) => {
   console.log('Selected csv option ', csvOption)
 
   // For each category and keyword, generate reports
-  for (let i = 0; i < (subCategoryInputs.length - subCategoryInputs.length + 2); i++) {
+  for (let i = 0; i < subCategoryInputs.length; i++) {
     // Access popover
     await page.click(clickForPopOver);
 
@@ -51,6 +51,8 @@ const generateReports = async (browser, csvOption) => {
     console.log('Generated report for ', subCategoryInputs[i])
     await delay(3000);
   }
+
+  page.close();
 };
 
 module.exports = generateReports;

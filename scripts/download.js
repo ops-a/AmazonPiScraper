@@ -19,11 +19,14 @@ const downloadSheets = async (browser, downloadFolder) => {
   
   const downloads = await page.$$(`table.aue-custom-table tr > td button`);
 
-  for(let i = 0; i < (subCategoryInputs.length - subCategoryInputs.length + 2); i++) {
+  for(let i = 0; i < subCategoryInputs.length; i++) {
     await downloads[i].click();
     await delay(1500);
     console.log('\tDownloaded file for ', subCategoryInputs[i])
   }
+
+  await delay(2000);
+  page.close();
 
   return;
 };
