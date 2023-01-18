@@ -1,3 +1,3 @@
-const wsEndpointUrl ="ws://127.0.0.1:5501/devtools/browser/0988f7dd-2b43-4925-9ee1-803e489bb971" 
+const wsEndpointUrl = "ws://127.0.0.1:5501/devtools/browser/7a8578a0-550c-487d-8161-dd135f03801c"
 
 module.exports = wsEndpointUrl;

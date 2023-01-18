@@ -33,9 +33,11 @@ const generateReports = async (browser, csvOption) => {
       subChecklistContainer
     );
 
+    await delay(1000);
     // Clear all categories
     const clearAllSubsE = await page.waitForSelector(clickToClearAllSubs);
     await clearAllSubsE.click();
+    await delay(2000);
 
     // Select a category and apply
     await page.focus(`${subChecklistContainer} ${subCategoryInputs[i]}`);
@@ -44,12 +46,13 @@ const generateReports = async (browser, csvOption) => {
     const apply = await page.waitForSelector(clickToApplySub);
     await apply.click();
 
-    await delay(3000);
+    await delay(2000);
 
-    await page.click(generateExcelBtn);
+    const generateBtn = await page.waitForSelector(generateExcelBtn);
+    await generateBtn.click();
    
     console.log('Generated report for ', subCategoryInputs[i])
-    await delay(3000);
+    await delay(2000);
   }
 
   page.close();

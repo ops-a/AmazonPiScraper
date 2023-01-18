@@ -2,7 +2,7 @@ const delay = require('../config/delay');
 const path = require('path');
 const { subCategoryInputs } = require('../config/domVariables')
 
-const downloadSheets = async (browser, downloadFolder) => {
+const downloadSheets = async (browser, downloadsParentDir, downloadSubDirs) => {
   const page = await browser.newPage();
   await page.setViewport({ width: 1900, height: 900 });
 
@@ -10,10 +10,10 @@ const downloadSheets = async (browser, downloadFolder) => {
   const client = await page.target().createCDPSession()
   await client.send('Page.setDownloadBehavior', {
     behavior: 'allow',
-    downloadPath: path.join(__dirname, '../downloads', downloadFolder)
+    downloadPath: path.join(__dirname, "..", "downloads", downloadSubDirs)
   })
   
-  await page.goto("https://pi.amazon.in/#/download-center", { waitUntil: "networkidle0" });
+  await page.goto("https://pi.amazon.in/download-center", { waitUntil: "networkidle0" });
 
   console.log('\n\nStarting download...\n')
   

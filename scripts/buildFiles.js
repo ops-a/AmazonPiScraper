@@ -45,14 +45,13 @@ const { parse } = require("csv-parse");
 const { stringify } = require("csv-stringify");
 const delay = require("../config/delay");
 
-const downloadsDir = path.join(__dirname, "../downloads");
 const resultsDir = path.join(__dirname, "../results");
 
 const rename = () => {
   for (let i = 0; i < keywords.length; i++) {
     const keyword = keywords[i];
 
-    const keywordDir = path.join(downloadsDir, keyword);
+    const keywordDir = path.join("/home/redstar/piScrape/downloads", keyword);
 
     console.log("\n\nRenaming files for ", keyword, "\n");
 
@@ -116,7 +115,7 @@ const organize = async () => {
     for (let j = 0; j < categoryNames.length; j++) {
       console.log("\tInserting for subcategory: ", categoryNames[j]);
       const currDataFile = path.join(
-        downloadsDir,
+        "/home/redstar/piScrape/downloads",
         keywords[i],
         `${categoryNames[j]}.csv`
       );
@@ -166,4 +165,5 @@ const buildFiles = () => {
   organize();
 };
 
+buildFiles();
 module.exports = buildFiles;
