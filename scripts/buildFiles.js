@@ -165,5 +165,5 @@ const buildFiles = () => {
   organize();
 };
 
-buildFiles();
+// buildFiles();
 module.exports = buildFiles;
